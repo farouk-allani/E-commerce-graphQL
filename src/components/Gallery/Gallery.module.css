@@ -1,0 +1,32 @@
+.gallery .categoryTitle {
+  width: 299px;
+  /* Heading / Desktop / H2 */
+  font-size: 42px;
+  line-height: 300%;
+  /* identical to box height, or 67px */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* --c-text */
+  color: #1d1f22;
+}
+
+.gallery .cardsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+/*# sourceMappingURL=Gallery.module.css.map */

@@ -1,0 +1,39 @@
+.slider {
+  position: relative;
+  height: 288px;
+  width: 200px;
+}
+
+.image {
+  object-fit: contain;
+  height: 288px;
+  width: 200px;
+  border-radius: 0px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 49px;
+  bottom: 27px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.left-arrow {
+  position: absolute;
+  right: 10px;
+  bottom: 27px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.008);
+}

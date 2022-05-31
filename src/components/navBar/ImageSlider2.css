@@ -1,0 +1,43 @@
+.slider2 {
+  position: relative;
+  width: 121px;
+  height: 190px;
+}
+
+.image2 {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 121px;
+  /* height: 190px; */
+  border-radius: 0px;
+}
+
+.right-arrow2 {
+  position: absolute;
+  width: 16px;
+  right: 32px;
+  bottom: 5px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.left-arrow2 {
+  position: absolute;
+  width: 16px;
+  right: 4px;
+  bottom: 5px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.slide2 {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide2.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.008);
+}

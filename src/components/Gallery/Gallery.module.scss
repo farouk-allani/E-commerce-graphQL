@@ -1,0 +1,20 @@
+.gallery {
+  & .categoryTitle {
+    width: 299px;
+    font-size: 42px;
+    line-height: 300%;
+    display: flex;
+    align-items: center;
+    color: #1d1f22;
+  }
+  & .cardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* gap: 10px; */
+    flex-wrap: wrap;
+    padding: 16px;
+    row-gap: 25px;
+    column-gap: 41px;
+  }
+}
