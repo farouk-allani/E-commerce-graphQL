@@ -55,21 +55,6 @@ export class CartLayerItems extends Component {
             </div>
 
             <div className="attributes2">
-              {/* { this.props.product.attributes.length=== 0 ? null: this.props.product.attributes[0].name.toUpperCase()+':'} </div>
-              <div className='size-boxes2'> */}
-              {/* Displaying attributes */}
-              {/* <LinkButton2>
-        {this.state.sizes && this.state.sizes.map(size => (
-          <Size
-            key={size}
-            activeSize={this.state.activeSize === size}
-             onClick={() => this.setState({...this.state, activeSize: size})}
-          >
-          {size} 
-          </Size>
-        ))} 
-          </LinkButton2> */}
-
               {this.props.product.attributes.map((item, index) => {
                 return (
                   <div key={index}>

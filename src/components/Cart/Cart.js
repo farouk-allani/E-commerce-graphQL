@@ -9,21 +9,7 @@ export class Cart extends Component {
 
     this.state = {};
   }
-  // componentDidMount() {
-  //   const total = this.props.handleCart.map((product) => {
-  //     return (
-  //       product.qty *
-  //       product.prices.filter(
-  //         (price) => price.currency.symbol === this.props.handleCurrency
-  //       )[0].amount
-  //     );
-  //   });
-  //   function add(accumulator, a) {
-  //     return accumulator + a;
-  //   }
-
-  //   this.setState({ finalTotal: total.reduce(add, 0) });
-  // }
+  
 
   render() {
     console.log("handleCart", this.props.handleCart);

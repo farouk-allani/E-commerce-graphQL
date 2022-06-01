@@ -9,8 +9,6 @@ import styled from 'styled-components';
 box-sizing: border-box;
 width: 63px;
 height: 45px;
-left: 929px;
-top: 299px;
 border: 1px solid #1D1F22;
 
   

@@ -45,7 +45,6 @@ export class ImageSlider2 extends Component {
         })}
         {this.state.length > 1 && (
           <>
-            {" "}
             <img
               src={toTheLeft}
               alt="left button"

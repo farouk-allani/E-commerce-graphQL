@@ -25,8 +25,7 @@ class GalleryView extends React.Component {
           },
         },
       })
-      .then((result) => {
-        console.log('clg from gallery view first parent',result)
+      .then((result) => { 
         this.setState({
           loading: false,
           data: result.data,
