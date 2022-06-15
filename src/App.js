@@ -1,5 +1,5 @@
 import "./App.css";
-import client from "./views/gqlClient";
+import client from "./graphQL/gqlClient";
 import { navigationQuery } from "./graphQL/queries";
 import Navbar from "./components/navBar/Navbar";
 import GalleryView from "./views/GalleryView";

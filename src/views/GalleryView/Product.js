@@ -1,6 +1,6 @@
 import React from "react";
-import client from "../gqlClient";
-import { loader } from "graphql.macro";
+import client from "../../graphQL/gqlClient";
+import {productByID} from '../../graphQL/queries'
 import "./Product.css";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -8,7 +8,7 @@ import { addCart } from "../../redux/action/index";
 import { setAttribute } from "../../redux/action/index";
 import parse from "html-react-parser";
 
-const ProductQuery = loader("./ProductQuery.gql");
+
 
 class Product extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Product extends React.Component {
     });
     client
       .query({
-        query: ProductQuery,
+        query: productByID,
         variables: {
           id: this.state.id,
         },

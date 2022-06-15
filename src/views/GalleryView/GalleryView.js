@@ -1,10 +1,10 @@
 import React from "react";
-import { loader } from "graphql.macro";
-import client from "../gqlClient";
+import client from "../../graphQL/gqlClient";
 import { Gallery } from "../../components/Gallery";
+import {categoryByTitle} from '../../graphQL/queries'
 
 
-const categoryByTitleQuery = loader("./CategoryByTitleQuery.gql");
+
 
 class GalleryView extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class GalleryView extends React.Component {
     });
     client
       .query({
-        query: categoryByTitleQuery,
+        query: categoryByTitle,
         variables: {
           categoryInput: {
             title: this.props.categoryTitle,

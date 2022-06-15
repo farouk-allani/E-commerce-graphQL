@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Popup from "./Popup";
 import CartLayerItems from "../Cart/CartLayerItems";
-import client from "../../views/gqlClient";
+import client from "../../graphQL/gqlClient";
 import { gql } from "@apollo/client";
 import { changeCurrency, resetCart } from "../../redux/action/index";
 

@@ -38,3 +38,25 @@ export const navigationQuery = gql`
   }
 `;
 
+export const categoryByTitle = gql`
+query categoryByTitle($categoryInput: CategoryInput!) {
+  category(input: $categoryInput) {
+    name
+    products{
+      id,
+      name,
+      gallery,
+      inStock,
+      description,
+      prices {
+        currency {
+          label,
+          symbol
+        }
+        amount
+      }
+    }
+  }
+}
+`
+
