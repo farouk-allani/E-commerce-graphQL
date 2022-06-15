@@ -27,7 +27,7 @@ class Navbar extends Component {
 
   static getDerivedStateFromProps(props, state) {
     
-    if (props.categories !== state.active) {
+    if (state.active === undefined) {
       return {
         ...state,
         active:props.categories[0],
