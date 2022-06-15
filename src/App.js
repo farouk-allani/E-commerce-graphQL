@@ -1,6 +1,6 @@
 import "./App.css";
 import client from "./views/gqlClient";
-import {navigationQuery} from './graphQL/queries'
+import { navigationQuery } from "./graphQL/queries";
 import Navbar from "./components/navBar/Navbar";
 import GalleryView from "./views/GalleryView";
 import Product2 from "./views/GalleryView/Product";
@@ -10,47 +10,58 @@ import Cart from "./components/Cart/Cart";
 
 export class App extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       types:[]
-    }
+      types: [],
+    };
   }
-   componentDidMount(){
-     client.query({
-      query:navigationQuery,
-    })
-    .then( (result)=>{
-      this.setState({types:result.data.categories.map((cat)=> cat.name)})
-      console.log('gqlgqglqg err',result)
-    } )
-    .catch( (err)=>console.log('gqlgqglqg err',err) )
+  componentDidMount() {
+    client
+      .query({
+        query: navigationQuery,
+      })
+      .then((result) => {
+        this.setState({ types: result.data.categories.map((cat) => cat.name) });
+      })
+      .catch((err) => console.log("navigation query error", err));
   }
 
   render() {
+    console.log("types", this.state.types);
     return (
       <div className="app">
-        <Navbar categories={this.state.types} />
-        <Switch>
-          <Route
-            exact
-            path={["/", "/all"]}
-            component={() => <GalleryView categoryTitle={"all"} />}
-          />
-          <Route
-            path="/clothes"
-            component={() => <GalleryView categoryTitle={"clothes"} />}
-          />
-          <Route
-            path="/tech"
-            component={() => <GalleryView categoryTitle={"tech"} />}
-          />
-          <Route
-            path={["/all /:id", "/tech /:id", "/clothes /:id"]}
-            component={() => <Product2 />}
-          />
-          <Route path="/cart" component={() => <Cart />} />
-        </Switch>
+        {this.state.types.length && (
+          <>
+            <Navbar categories={this.state.types} />
+            <Switch>
+              {this.state.types.map((type) => (
+                <Route
+                  key={type}
+                  exact
+                  path={`/${type}`}
+                  component={() => <GalleryView categoryTitle={type} />}
+                />
+              ))}
+              <Route
+                exact
+                path="/"
+                component={() => (
+                  <GalleryView categoryTitle={this.state.types[0]} />
+                )}
+              />
+              {this.state.types.map((type) => (
+                <Route
+                  key={type}
+                  exact
+                  path={`/${type} /:id`}
+                  component={() => <Product2 />}
+                />
+              ))}
+              <Route path="/cart" component={() => <Cart />} />
+            </Switch>
+          </>
+        )}
       </div>
     );
   }

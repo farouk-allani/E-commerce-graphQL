@@ -57,7 +57,6 @@ class Navbar extends Component {
           loading: false,
           data: result.data.currencies,
           active: this.props.categories[0]
-          
         });
       })
       .catch((err) => {
@@ -81,7 +80,6 @@ class Navbar extends Component {
     this.setState({ ...this.state, buttonPopup: false });
   };
   render() {
-    console.log('state',this.state)
     const quantity = this.props.handleCart.reduce((accum, x) => {
       return accum + x.qty;
     }, 0);
