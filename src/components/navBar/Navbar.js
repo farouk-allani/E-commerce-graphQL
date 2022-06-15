@@ -15,8 +15,8 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: "ALL",
-      types: ["ALL", "CLOTHES", "TECH"],
+      types: [],
+      active: '',
       buttonPopup: false,
       loading: false,
       error: null,
@@ -24,6 +24,18 @@ class Navbar extends Component {
       selectedCurrency: this.props.handleCurrency.selectedCurrency,
     };
   }
+
+  static getDerivedStateFromProps(props, state) {
+    
+    if (props.categories !== state.active) {
+      return {
+        ...state,
+        active:props.categories[0],
+      };
+    }
+    return null;
+  }
+
   componentDidMount() {
     this.setState({
       loading: true,
@@ -44,6 +56,8 @@ class Navbar extends Component {
           ...this.state,
           loading: false,
           data: result.data.currencies,
+          active: this.props.categories[0]
+          
         });
       })
       .catch((err) => {
@@ -53,6 +67,8 @@ class Navbar extends Component {
         });
       });
   }
+  
+
   handleClickCurrency = (currencySymbol) => {
     this.props.changeCurrency(currencySymbol); // dispatch the action change currency
   };
@@ -65,6 +81,7 @@ class Navbar extends Component {
     this.setState({ ...this.state, buttonPopup: false });
   };
   render() {
+    console.log('state',this.state)
     const quantity = this.props.handleCart.reduce((accum, x) => {
       return accum + x.qty;
     }, 0);
@@ -93,11 +110,11 @@ class Navbar extends Component {
         <div className="header">
           <div className="navigation">
             <LinkButton>
-              {this.state.types.map((type, index) => (
+              {this.props.categories.map((type, index) => (
                 <Link
+                  className="nav-link"
                   to={`/${type.toLowerCase()}`}
                   key={index}
-                  style={{ color: "inherit", textDecoration: "inherit" }}
                 >
                   <Tab
                     key={type}
@@ -119,13 +136,13 @@ class Navbar extends Component {
             <div className="dropdown">
               <button className="link">
                 <div className="currencySelector">
-                  {" "}
+                  
                   <div
                     className="
          triangle_down1"
-                  />{" "}
-                  {this.props.handleCurrency.selectedCurrency}{" "}
-                </div>{" "}
+                  />
+                  {this.props.handleCurrency.selectedCurrency}
+                </div>
               </button>
               <div className="dropdown-menu">
                 <ul>

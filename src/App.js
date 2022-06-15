@@ -1,4 +1,6 @@
 import "./App.css";
+import client from "./views/gqlClient";
+import {navigationQuery} from './graphQL/queries'
 import Navbar from "./components/navBar/Navbar";
 import GalleryView from "./views/GalleryView";
 import Product2 from "./views/GalleryView/Product";
@@ -7,10 +9,28 @@ import React, { Component } from "react";
 import Cart from "./components/Cart/Cart";
 
 export class App extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       types:[]
+    }
+  }
+   componentDidMount(){
+     client.query({
+      query:navigationQuery,
+    })
+    .then( (result)=>{
+      this.setState({types:result.data.categories.map((cat)=> cat.name)})
+      console.log('gqlgqglqg err',result)
+    } )
+    .catch( (err)=>console.log('gqlgqglqg err',err) )
+  }
+
   render() {
     return (
       <div className="app">
-        <Navbar />
+        <Navbar categories={this.state.types} />
         <Switch>
           <Route
             exact

@@ -3,6 +3,10 @@
   top: 0;
   z-index: 1;
 }
+.nav-link{
+  color: inherit;
+  text-decoration: inherit;
+}
 .header {
   align-items: center;
   justify-content: space-between;
