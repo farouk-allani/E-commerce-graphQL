@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Size, LinkButton2 } from "../navBar/NavbarElements";
 import { connect } from "react-redux";
 import { increment, decrement } from "../../redux/action/index";
 import "./CartLayerItems.css";

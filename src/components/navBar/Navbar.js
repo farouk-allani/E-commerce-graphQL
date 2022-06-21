@@ -131,7 +131,11 @@ class Navbar extends Component {
           <div className="action">
             <div className="spacer1"></div>
             <div className="spacer2"></div>
-            <div className="dropdown">
+            <div className="dropdown"
+            onClick={() => {
+              this.setState({ ...this.state, buttonPopup: false });
+            }}
+            >
               <button className="link">
                 <div className="currencySelector">
                   
