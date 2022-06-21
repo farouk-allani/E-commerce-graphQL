@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import greenCart from "../../images/greenCart.svg";
 import { connect } from "react-redux";
 import React, { Component } from "react";
+import {addCart} from '../../redux/action/index'
 
 export class ProductCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
+  }
+
+  handleDefaultAttr(product){
+    this.props.addCart(product)
   }
 
   render() {
@@ -40,11 +45,7 @@ export class ProductCard extends Component {
             <div className={productCardCss.outOfStock}>OUT OF STOCK</div>
           )}
           <div className={productCardCss.content}>
-            <img
-              className={productCardCss.greenCart}
-              src={greenCart}
-              alt="green cart"
-            />
+            
             <div className={productCardCss.name}> {product.name} </div>
             {/* Product Price */}
             <div className={productCardCss.price}>
@@ -53,6 +54,15 @@ export class ProductCard extends Component {
             </div>
           </div>
         </Link>
+        {product.inStock?
+           <img
+              onClick={()=>this.handleDefaultAttr(this.props.product)}
+              className={productCardCss.greenCart}
+              src={greenCart}
+              alt="green cart"
+            />
+            :null
+          }
       </div>
     );
   }
@@ -62,4 +72,4 @@ const mapStateToProps = (state) => ({
   handleCurrency: state.handleCurrency,
 });
 
-export default connect(mapStateToProps, null)(ProductCard);
+export default connect(mapStateToProps,{addCart})(ProductCard);

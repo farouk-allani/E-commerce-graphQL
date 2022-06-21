@@ -1,4 +1,5 @@
 .productCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -29,9 +30,12 @@
   }
   & .greenCart {
     position: absolute;
-    right: 23px;
-    top: -40px;
     opacity: 0;
+    right: 39px;
+    top: 302px;
+  }
+  & .greenCart:hover {
+    filter: drop-shadow(2px 2px 3px gray)
   }
   & .name {
     color: black;
@@ -43,6 +47,7 @@
     font-size: 18px;
     line-height: 160%;
   }
+
 
   & .price {
     font-family: "Raleway";

@@ -7,6 +7,9 @@
   color: inherit;
   text-decoration: inherit;
 }
+.bagLink{
+  text-decoration: none;
+}
 .header {
   align-items: center;
   justify-content: space-between;

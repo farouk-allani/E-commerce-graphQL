@@ -204,7 +204,7 @@ class Navbar extends Component {
             </span>
           </div>
           <div className="frame13">
-            <Link to="/cart" style={{ textDecoration: "none" }}>
+            <Link className="bagLink" to="/cart" >
               <button className="viewBag" onClick={this.handleClickBag}>
                 VIEW BAG
               </button>
