@@ -9,8 +9,6 @@ export class CartLayerItems extends Component {
     super(props);
 
     this.state = {
-      sizes: [],
-      activeSize: "",
       price: this.props.product.prices.filter(
         (price) =>
           price.currency.symbol === this.props.handleCurrency.selectedCurrency
@@ -24,22 +22,6 @@ export class CartLayerItems extends Component {
     this.props.decrement(this.props.product);
   };
 
-  componentDidMount() {
-    console.log("showinnn props", this.props);
-    // Check if the product has attributes
-    if (this.props.product.attributes.length === 0) {
-      this.setState({
-        sizes: [],
-      });
-    } else {
-      // Put attributes in an array named sizes in case they exist
-      this.setState({
-        sizes: this.props.product.attributes[0].items.map(
-          (item) => item.displayValue
-        ),
-      });
-    }
-  }
 
   render() {
     return (
@@ -54,7 +36,7 @@ export class CartLayerItems extends Component {
             </div>
 
             <div className="attributes2">
-              {this.props.product.attributes.map((item, index) => {
+              {this.props.product.attributes && this.props.product.attributes.map((item, index) => {
                 return (
                   <div key={index}>
                     <div className="attName2">{item.name.toUpperCase()}:</div>

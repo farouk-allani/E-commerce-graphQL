@@ -118,7 +118,7 @@ class Navbar extends Component {
                     key={type}
                     active={this.state.active === type}
                     onClick={() =>
-                      this.setState({ ...this.state, active: type })
+                      this.setState({ ...this.state, active: type ,buttonPopup: false })
                     }
                   >
                     {type}
