@@ -1,15 +1,17 @@
 const cart = [];
 
 const handleCart = (state = cart, action) => {
-  const product = action.payload;
+  const product= action.payload;
+  // const {product,selectedAttr} = action.payload;
+  // product=Object.assign(selectedAttr,product);
   switch (action.type) {
     case "ADDITEM":
       // check if product already exist
-      const exist = state.find((x) => x.id === product.id);
+      const exist = state.find((x) => JSON.stringify(x.selectedAttr)  === JSON.stringify(product.selectedAttr) );
       if (exist) {
         // Increase the Quantity
         return state.map((x) =>
-          x.id === product.id ? { ...x, qty: x.qty + 1 } : x
+        JSON.stringify(x.selectedAttr)  ===JSON.stringify(product.selectedAttr)  ? { ...x, qty: x.qty + 1 } : x
         );
       } else {
         const product = action.payload;
@@ -24,16 +26,16 @@ const handleCart = (state = cart, action) => {
 
     case "INCREMENT":
       return state.map((x) =>
-        x.id === product.id ? { ...x, qty: x.qty + 1 } : x
+      JSON.stringify(x.selectedAttr)  ===JSON.stringify(product.selectedAttr) ? { ...x, qty: x.qty + 1 } : x
       );
 
     case "DECREMENT":
-      const exist1 = state.find((x) => x.id === product.id);
+      const exist1 = state.find((x) => JSON.stringify( x.selectedAttr)===JSON.stringify(product.selectedAttr) );
       if (exist1.qty === 1) {
-        return state.filter((x) => x.id !== exist1.id);
+        return state.filter((x) =>JSON.stringify(x.selectedAttr)  !==JSON.stringify( exist1.selectedAttr));
       } else {
         return state.map((x) =>
-          x.id === product.id ? { ...x, qty: x.qty - 1 } : x
+        JSON.stringify(x.selectedAttr) ===JSON.stringify(product.selectedAttr)  ? { ...x, qty: x.qty - 1 } : x
         );
       }
 

@@ -14,6 +14,7 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedAttr: [],
       loading: false,
       error: undefined,
       data: undefined,
@@ -22,9 +23,40 @@ class Product extends React.Component {
     };
   }
 
+checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
+    const found = selectedAttr.find(element => element[prodName+' '+itemName] !== undefined);
+    const fullAttribute={[prodName + " " + itemName]:attrValue}
+    if (found===undefined) {
+    this.setState({...this.state, selectedAttr:this.state.selectedAttr.concat([fullAttribute])})
+    }
+    else {
+      const found2=selectedAttr.find(element => element === fullAttribute)
+      if (found2===undefined) {
+        
+        const index = selectedAttr.findIndex((el) => el[prodName+' '+itemName] !== undefined)   
+        if (index!==-1){
+        const attrArray=this.state.selectedAttr
+        attrArray[index]=fullAttribute
+        this.setState({...this.state, selectedAttr:attrArray})
+        }
+      }
+    }
+    
+  }
+
   handleAddToCart = () => {
     // dispatch action to add a product to cart
-    this.props.addCart(this.state.data.product);
+    const selectedAttr=JSON.parse(JSON.stringify(this.state.selectedAttr));  
+    const productAttr=  JSON.parse(JSON.stringify(this.state.data.product));  
+    
+    productAttr.selectedAttr=selectedAttr;
+    // const productAttr= Object.assign(selectedAttr,this.state.data.product);
+    // console.log('selectedAttr:',selectedAttr)
+    if (this.state.data.product.attributes.length === selectedAttr.length){
+      this.props.addCart(productAttr);
+    }
+    else { alert('Select Attributes First.') }
+    // this.setState({...this.state,selectedAttr: []})
   };
 
   componentDidMount() {
@@ -40,6 +72,7 @@ class Product extends React.Component {
       })
       .then((result) => {
         this.setState({
+          ...this.state ,
           loading: false,
           data: result.data,
           selectedImg: result.data.product.gallery[0],
@@ -59,6 +92,7 @@ class Product extends React.Component {
       });
   }
   render() {
+    console.log('selectedAttr:',this.state.selectedAttr)
     const { setAttribute } = this.props;
 
     if (this.state.loading) {
@@ -103,70 +137,63 @@ class Product extends React.Component {
                             {item.name.toUpperCase()}:
                           </div>
                           <ul>
-                            {item.items.map((attribute, index) => (
-                              <li
-                                key={index}
-                                style={{ backgroundColor: attribute.value }}
-                              >
-                                <button
-                                  onClick={() =>
-                                    setAttribute(
-                                      this.state.data.product.name,
-                                      attribute.value,
-                                      item.name
-                                    )
-                                  }
-                                  className={
-                                    item.type === "text"
-                                      ? "attrBtn"
-                                      : "ColorAttrBtn"
-                                  }
-                                  style={{
-                                    border:
-                                      item.type === "swatch" &&
-                                      attribute.value ===
-                                        this.props.handleAttributes[
-                                          this.state.data.product.name +
-                                            " " +
-                                            item.name
-                                        ]
-                                        ? "4px solid #21933f"
-                                        : null,
-                                    color:
-                                      attribute.value ===
-                                      this.props.handleAttributes[
-                                        this.state.data.product.name +
-                                          " " +
-                                          item.name
-                                      ]
-                                        ? "white"
-                                        : "black",
+                          
 
-                                    backgroundColor:
-                                      attribute.value ===
-                                        this.props.handleAttributes[
-                                          this.state.data.product.name +
-                                            " " +
-                                            item.name
-                                        ] &&
-                                      this.props.handleAttributes.hasOwnProperty(
-                                        `${
-                                          this.state.data.product.name +
-                                          " " +
-                                          item.name
-                                        }`
-                                      ) &&
-                                      item.type === "text"
-                                        ? "black"
-                                        : "transparent",
-                                  }}
-                                >
-                                  {item.type === "swatch"
-                                    ? null
-                                    : attribute.value}
-                                </button>
-                              </li>
-                            ))}
+{item.items.map((attribute, index) => (
+                        <li
+                        className={
+                          attribute.value ===
+                                this.props.handleAttributes[
+                                  this.state.data.product.name + " " + item.name
+                                ]
+                                ? 'selected' 
+                                :'notSelected'     
+                        }
+                          key={index}
+                        >
+                          <button
+                            className={
+                              item.type === "text"
+                                ? "attrBtn"
+                                : "ColorAttrBtn"
+                            }
+                            style={{backgroundColor: attribute.value}}
+                            onClick={() =>{
+                              setAttribute(
+                                this.state.data.product.name,
+                                attribute.value,
+                                item.name
+                              )
+                              // const newStateArray = this.state.myArray;
+                              // newStateArray.push();
+                          
+                              // this.setState({
+                              //   ...this.state,
+                              //   selectedAttr: [...this.state.selectedAttr, attribute.value]
+                              // })
+                              this.checkAttrExist(this.state.data.product.name,item.name,attribute.value,this.state.selectedAttr)
+
+
+                            
+                            }
+                            }
+                          >
+                          <button className={
+                            item.type === "swatch" &&
+                            attribute.value ===
+                              this.props.handleAttributes[
+                                this.state.data.product.name + " " + item.name
+                              ]
+                              ? "swatchSelected"
+                              : "swatchnotSelected"
+                          } >
+                         
+                         </button>
+                          {item.type === "text" && attribute.value}
+
+                          </button>
+                        </li>
+                      ))}
                           </ul>
                         </div>
                       );

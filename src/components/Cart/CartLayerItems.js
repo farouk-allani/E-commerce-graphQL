@@ -43,8 +43,16 @@ export class CartLayerItems extends Component {
                     <ul>
                       {item.items.map((attribute, index) => (
                         <li
+                        className={
+                          
+                            this.props.product.selectedAttr.findIndex(el=>el[
+                              this.props.product.name + " " + item.name
+                            ]===attribute.value) !==-1
+                                
+                                ? 'selected2' 
+                                :'notSelected2'     
+                        }
                           key={index}
-                          style={{ backgroundColor: attribute.value }}
                         >
                           <button
                             className={
@@ -52,37 +60,20 @@ export class CartLayerItems extends Component {
                                 ? "attrBtn2"
                                 : "ColorAttrBtn2"
                             }
-                            style={{
-                              border:
-                                item.type === "swatch" &&
-                                attribute.value ===
-                                  this.props.handleAttributes[
-                                    this.props.product.name + " " + item.name
-                                  ]
-                                  ? "3px solid #5ECE7B"
-                                  : null,
-                              color:
-                                attribute.value ===
-                                this.props.handleAttributes[
-                                  this.props.product.name + " " + item.name
-                                ]
-                                  ? "white"
-                                  : "black",
-
-                              backgroundColor:
-                                attribute.value ===
-                                  this.props.handleAttributes[
-                                    this.props.product.name + " " + item.name
-                                  ] &&
-                                this.props.handleAttributes.hasOwnProperty(
-                                  `${this.props.product.name + " " + item.name}`
-                                ) &&
-                                item.type === "text"
-                                  ? "black"
-                                  : "transparent",
-                            }}
+                            style={{backgroundColor: attribute.value}}
                           >
-                            {item.type === "text" && attribute.value}
+                          <button className={
+                            item.type === "swatch" &&
+                            this.props.product.selectedAttr.findIndex(el=>el[
+                              this.props.product.name + " " + item.name
+                            ]===attribute.value) !==-1
+                              ? "swatchSelected2"
+                              : "swatchnotSelected2"
+                          } >
+                         
+                         </button>
+                          {item.type === "text" && attribute.value}
+
                           </button>
                         </li>
                       ))}

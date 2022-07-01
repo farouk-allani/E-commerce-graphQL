@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 .brand {
@@ -140,4 +141,24 @@ background-color: white;
   font-family: "Roboto Condensed";
   font-weight: 700;
   font-size: 18px;
+}
+
+
+.selected .attrBtn{
+  background-color: black;
+  color: white;
+}
+
+.swatchSelected{
+  position: relative;
+  padding: 13px;
+  border: 5px solid #5ECE7B;
+  background-color: transparent;
+  top: -3px;
+  right: 2px;
+
+}
+.swatchnotSelected{
+  background-color: transparent;
+    border: none;
 }

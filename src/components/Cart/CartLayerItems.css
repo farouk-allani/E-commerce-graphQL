@@ -162,3 +162,32 @@ background-color: white;
   box-sizing: border-box;
   border: 1px solid #1d1f22;
 }
+
+
+/* .selected{
+color: white;
+background-color: black;
+}
+.notSelected{
+color:black;
+background-color: white;
+
+} */
+.selected2 .attrBtn2{
+  background-color: black;
+  color: white;
+}
+
+.swatchSelected2{
+  position: relative;
+    padding: 8px;
+    border: 5px solid #5ECE7B;
+    background-color: transparent;
+    top: -5px;
+    right: 2px;
+
+}
+.swatchnotSelected2{
+  background-color: transparent;
+    border: none;
+}

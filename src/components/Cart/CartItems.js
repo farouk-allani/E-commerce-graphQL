@@ -44,54 +44,40 @@ export class CartItems extends Component {
                         {item.name.toUpperCase()}:
                       </div>
                       <ul>
-                        {item.items.map((attribute, index) => (
-                          <li
-                            key={index}
-                            style={{ backgroundColor: attribute.value }}
+                      {item.items.map((attribute, index) => (
+                        <li
+                        className={
+                          this.props.product.selectedAttr.findIndex(el=>el[
+                            this.props.product.name + " " + item.name
+                          ]===attribute.value) !==-1
+                                ? 'selected' 
+                                :'notSelected'     
+                        }
+                          key={index}
+                        >
+                          <button
+                            className={
+                              item.type === "text"
+                                ? "attrBtn"
+                                : "ColorAttrBtn"
+                            }
+                            style={{backgroundColor: attribute.value}}
                           >
-                            <button
-                              className={
-                                item.type === "text"
-                                  ? "attrBtnCart"
-                                  : "ColorAttrBtnCart"
-                              }
-                              style={{
-                                border:
-                                  item.type === "swatch" &&
-                                  attribute.value ===
-                                    this.props.handleAttributes[
-                                      this.props.product.name + " " + item.name
-                                    ]
-                                    ? "4px solid #21933f"
-                                    : null,
-                                color:
-                                  attribute.value ===
-                                  this.props.handleAttributes[
-                                    this.props.product.name + " " + item.name
-                                  ]
-                                    ? "white"
-                                    : "black",
+                          <button className={
+                           item.type === "swatch" &&
+                           this.props.product.selectedAttr.findIndex(el=>el[
+                             this.props.product.name + " " + item.name
+                           ]===attribute.value) !==-1
+                              ? "swatchSelected"
+                              : "swatchnotSelected"
+                          } >
+                         
+                         </button>
+                          {item.type === "text" && attribute.value}
 
-                                backgroundColor:
-                                  attribute.value ===
-                                    this.props.handleAttributes[
-                                      this.props.product.name + " " + item.name
-                                    ] &&
-                                  this.props.handleAttributes.hasOwnProperty(
-                                    `${
-                                      this.props.product.name + " " + item.name
-                                    }`
-                                  ) &&
-                                  item.type === "text"
-                                    ? "black"
-                                    : "transparent",
-                              }}
-                            >
-                              {/* { JSON.stringify(this.props.handleAttributes[this.props.product.name+' '+item.name])} */}
-                              {item.type === "swatch" ? null : attribute.value}
-                            </button>
-                          </li>
-                        ))}
+                          </button>
+                        </li>
+                      ))}
                       </ul>
                     </div>
                   );
