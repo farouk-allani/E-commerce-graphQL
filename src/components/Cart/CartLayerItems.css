@@ -162,7 +162,10 @@ background-color: white;
   box-sizing: border-box;
   border: 1px solid #1d1f22;
 }
-
+.selected2 .ColorAttrBtn2{
+  position: relative;
+    top: 7px;
+}
 
 /* .selected{
 color: white;
