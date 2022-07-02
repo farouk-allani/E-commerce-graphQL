@@ -40,7 +40,7 @@ class GalleryView extends React.Component {
   }
   render() {
     if (this.state.loading) {
-      return "loading";
+      return "loading...";
     } else if (this.state.data && this.state.data.category) {
       return (
         <Gallery

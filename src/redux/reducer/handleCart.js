@@ -7,7 +7,7 @@ const handleCart = (state = cart, action) => {
   switch (action.type) {
     case "ADDITEM":
       // check if product already exist
-      const exist = state.find((x) => JSON.stringify(x.selectedAttr)  === JSON.stringify(product.selectedAttr) );
+      const exist = state.find((x) =>x.selectedAttr !== undefined?   JSON.stringify(x.selectedAttr)  === JSON.stringify(product.selectedAttr):undefined );
       if (exist) {
         // Increase the Quantity
         return state.map((x) =>
@@ -26,7 +26,7 @@ const handleCart = (state = cart, action) => {
 
     case "INCREMENT":
       return state.map((x) =>
-      JSON.stringify(x.selectedAttr)  ===JSON.stringify(product.selectedAttr) ? { ...x, qty: x.qty + 1 } : x
+      JSON.stringify(x.selectedAttr)  ===JSON.stringify(product.selectedAttr)? { ...x, qty: x.qty + 1 } : x
       );
 
     case "DECREMENT":
