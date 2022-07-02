@@ -2,8 +2,6 @@ const cart = [];
 
 const handleCart = (state = cart, action) => {
   const product= action.payload;
-  // const {product,selectedAttr} = action.payload;
-  // product=Object.assign(selectedAttr,product);
   switch (action.type) {
     case "ADDITEM":
       // check if product already exist

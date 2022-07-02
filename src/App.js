@@ -28,7 +28,6 @@ export class App extends Component {
   }
 
   render() {
-    console.log("types", this.state.types);
     return (
       <div className="app">
         {this.state.types.length && (

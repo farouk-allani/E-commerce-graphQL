@@ -45,18 +45,13 @@ checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
   }
 
   handleAddToCart = () => {
-    // dispatch action to add a product to cart
     const selectedAttr=JSON.parse(JSON.stringify(this.state.selectedAttr));  
     const productAttr=  JSON.parse(JSON.stringify(this.state.data.product));  
-    
     productAttr.selectedAttr=selectedAttr;
-    // const productAttr= Object.assign(selectedAttr,this.state.data.product);
-    // console.log('selectedAttr:',selectedAttr)
     if (this.state.data.product.attributes.length === selectedAttr.length){
       this.props.addCart(productAttr);
     }
     else { alert('Select Attributes First.') }
-    // this.setState({...this.state,selectedAttr: []})
   };
 
   componentDidMount() {
@@ -92,9 +87,7 @@ checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
       });
   }
   render() {
-    console.log('selectedAttr:',this.state.selectedAttr)
     const { setAttribute } = this.props;
-
     if (this.state.loading) {
       return "loading";
     } else if (this.state.data) {
@@ -129,7 +122,7 @@ checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
                 <div className="pName"> {this.state.data.product.name} </div>
                 <div className="attributes">
                   {/* listing Product attributes */}
-                  {this.state.data.product.attributes !== 0 &&
+                  {this.state.data.product.attributes.length>0 &&
                     this.state.data.product.attributes.map((item) => {
                       return (
                         <div key={item.name}>
@@ -164,21 +157,11 @@ checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
                                 attribute.value,
                                 item.name
                               )
-                              // const newStateArray = this.state.myArray;
-                              // newStateArray.push();
-                          
-                              // this.setState({
-                              //   ...this.state,
-                              //   selectedAttr: [...this.state.selectedAttr, attribute.value]
-                              // })
                               this.checkAttrExist(this.state.data.product.name,item.name,attribute.value,this.state.selectedAttr)
-
-
-                            
                             }
                             }
                           >
-                          <button className={
+                          <div className={
                             item.type === "swatch" &&
                             attribute.value ===
                               this.props.handleAttributes[
@@ -187,8 +170,7 @@ checkAttrExist=(prodName,itemName,attrValue,selectedAttr) =>{
                               ? "swatchSelected"
                               : "swatchnotSelected"
                           } >
-                         
-                         </button>
+                         </div>
                           {item.type === "text" && attribute.value}
 
                           </button>

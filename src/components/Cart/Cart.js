@@ -12,8 +12,6 @@ export class Cart extends Component {
   
 
   render() {
-    console.log("handleCart", this.props.handleCart);
-
     const quantity = this.props.handleCart.reduce((accum, x) => {
       return accum + x.qty;
     }, 0);

@@ -26,7 +26,6 @@ export class ImageSlider2 extends Component {
   };
 
   render() {
-    console.log("current:", this.state.current);
     return (
       <section className="slider2">
         {this.props.slides.map((slide, index) => {

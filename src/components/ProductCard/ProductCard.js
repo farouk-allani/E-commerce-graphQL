@@ -45,10 +45,6 @@ componentDidMount(){
       });
     });
 }
-
-
-
-
   handleDefaultAttr(){
     const pdName=this.state.data.product.name
     let attArray=[];

@@ -63,7 +63,7 @@ export class CartItems extends Component {
                             }
                             style={{backgroundColor: attribute.value}}
                           >
-                          <button className={
+                          <div className={
                            item.type === "swatch" &&
                            this.props.product.selectedAttr.findIndex(el=>el[
                              this.props.product.name + " " + item.name
@@ -72,7 +72,7 @@ export class CartItems extends Component {
                               : "swatchnotSelected"
                           } >
                          
-                         </button>
+                         </div>
                           {item.type === "text" && attribute.value}
 
                           </button>

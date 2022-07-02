@@ -5,6 +5,10 @@ flex-direction: row;
 .side-pics{
 display: flex;
 flex-direction: column;
+max-height: 508px;
+overflow-y: scroll;
+width: 103px;
+overflow-x: hidden;
 }
 .side-pic{
     object-fit: contain;
