@@ -8,13 +8,14 @@
     color: #1d1f22;
   }
   & .cardsContainer {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: row; */
     justify-content: space-around;
     /* gap: 10px; */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     padding: 16px;
     row-gap: 25px;
     column-gap: 41px;
+    grid-template-columns: auto auto auto;
   }
 }
