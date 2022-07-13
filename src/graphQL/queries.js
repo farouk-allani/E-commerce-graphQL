@@ -46,6 +46,16 @@ query categoryByTitle($categoryInput: CategoryInput!) {
       id,
       name,
       gallery,
+      attributes{
+        name,
+        type,
+        items{
+          displayValue,
+          value,
+          id,
+        }
+        
+      }
       inStock,
       description,
       prices {

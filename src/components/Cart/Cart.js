@@ -29,6 +29,7 @@ export class Cart extends Component {
               )[0].amount
             );
           });
+          console.log('total',total)
     const add = (accumulator, a) => {
       return accumulator + a;
     };

@@ -4,56 +4,25 @@ import greenCart from "../../images/greenCart.svg";
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import {addCart} from '../../redux/action/index';
-import {productByID} from '../../graphQL/queries';
-import client from "../../graphQL/gqlClient";
 
 export class ProductCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loading: false,
-      error: undefined,
-      data: [],
+     
     };
   }
-
-componentDidMount(){
-  this.setState({
-    loading: true,
-  });
-  client
-    .query({
-      query: productByID,
-      variables: {
-        id: this.props.product.id,
-      },
-    })
-    .then((result) => {
-      this.setState({
-        ...this.state ,
-        loading: false,
-        data: result.data,
-        
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      this.setState({
-        loading: false,
-        error: err,
-      });
-    });
-}
   handleDefaultAttr(){
-    const pdName=this.state.data.product.name
+    const pdName=this.props.product.name
+    console.log(this.props.product)
     let attArray=[];
-      this.state.data.product.attributes.forEach((att)=>  {
+      this.props.product.attributes.forEach((att)=>  {
         const fullAttribute=[{[pdName+' '+att.name]:att.items[0].value}]
         attArray=attArray.concat(fullAttribute)
       })
       const selectedAttr=JSON.parse(JSON.stringify(attArray));
-      const productAttr=  JSON.parse(JSON.stringify(this.state.data.product));
+      const productAttr=  JSON.parse(JSON.stringify(this.props.product));
       productAttr.selectedAttr=selectedAttr;
       this.props.addCart(productAttr)
   }
